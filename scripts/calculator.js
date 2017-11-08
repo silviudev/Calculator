@@ -1,5 +1,6 @@
 "use strict";
 
+/*Variables for the buttons and text field*/
 var textField = document.getElementById("textBox");
 var numberButtonArray = Array.from(document.getElementsByClassName("number"));
 var clearButton = document.getElementById("clearButton");
@@ -15,6 +16,8 @@ var fibButton = document.getElementById("fib");
 var primeButton = document.getElementById("prime");
 var equalsButton = document.getElementById("equals");
 
+/*Variables for the max digits allowed in the display box, the current operator and the current
+first number input before the operator*/
 var maxDigits = 8;
 var operator = "";
 var num1 = -1;
@@ -41,30 +44,38 @@ decimalButton.addEventListener("click", function(){
 
 //add event listener to addition button
 addButton.addEventListener("click", function(){
-	num1 = Number.parseFloat(textField.value);
-	operator = "add";
-	clearDisplay();
+	if(operator == ""){
+		num1 = Number.parseFloat(textField.value);
+		operator = "add";
+		clearDisplay();
+	}
 });
 
 //add event listener to multiply button
 multiplyButton.addEventListener("click", function(){
-	num1 = Number.parseFloat(textField.value);
-	operator = "multiply";
-	clearDisplay();
+	if(operator == ""){
+		num1 = Number.parseFloat(textField.value);
+		operator = "multiply";
+		clearDisplay();	
+	}
 });
 
 //add event listener to subtract button
 subtractButton.addEventListener("click", function(){
-	num1 = Number.parseFloat(textField.value);
-	operator = "subtract";
-	clearDisplay();
+	if(operator == ""){
+		num1 = Number.parseFloat(textField.value);
+		operator = "subtract";
+		clearDisplay();		
+	}
 });
 
 //add event listener to divide button
 divideButton.addEventListener("click", function(){
-	num1 = Number.parseFloat(textField.value);
-	operator = "divide";
-	clearDisplay();
+	if(operator == ""){
+		num1 = Number.parseFloat(textField.value);
+		operator = "divide";
+		clearDisplay();		
+	}
 });
 
 //add event listener to square root button
@@ -146,7 +157,7 @@ prime.addEventListener("click", function(){
 		}
 		textField.value = temp;
 	}else{
-		alert("Finding more than 100000 prime numbers would take very long and may freeze your browser. Please enter a value of 1000 or below for Prime number calculation");
+		alert("Finding more than 100,000 prime numbers would take very long and may freeze your browser. Please enter a value of 100,000 or below for Prime number calculation");
 	}
 });
 
@@ -164,29 +175,34 @@ equalsButton.addEventListener("click", function(){
 			textField.value = multiply(num1,num2).toString();
 		}else if(operator == "divide"){
 			textField.value = divide(num1,num2).toString();
-		}
+		}	
+		num1 = -1;
+		manageDisplayLength();
+		operator = "";
 	}
-	num1 = -1;
-	
-	manageDisplayLength();
 });
 
+/*cleardisplay() clears the text box at the top and changes the value to zero*/
 function clearDisplay(){
 	textField.value = 0;
 }
 
+/*resetFunctionality() resets the current number to zero and resets the operator*/
 function resetFunctionality(){
 	num1 = 0;
-	num2 = 0;
 	operator = "";
 }
 
+/*manageDisplayLength() reduces the length of the displayed number to a 7 digit precision if the number
+is overly long*/
 function manageDisplayLength(){
 	if(textField.value.includes("e") || textField.value.length > 9){
 		textField.value = Number.parseFloat(textField.value).toPrecision(7);
 	}	
 }
 
+/*isPrime() checks if a number is prime by taking a number and dividing it by every number below it
+that is up to and including the number's square root and returns true if prime and false if not*/
 function isPrime(num){
 	var limit = Math.sqrt(num);
 	for(var i = 3; i <= limit; i++){
@@ -197,18 +213,23 @@ function isPrime(num){
 	return true;
 }
 
+/*add() returns the sum of two passed in numbers*/
 function add(a,b){
 	return a + b;
 }
 
+
+/*subtract() returns the difference of two passed in numbers*/
 function subtract(a,b){
 	return a - b;
 }
 
+/*multiply() returns the product of two passed in numbers*/
 function multiply(a,b){
 	return a * b;
 }
 
+/*divide() returns the quotient of two passed in numbers*/
 function divide(a,b){
 	return a / b;
 }

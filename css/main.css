@@ -2,6 +2,7 @@ body{
 	background: gray;
 }
 
+/*Make the calculator centered and give it a background and border*/
 main{
 	width: 25%;
 	margin: 0 auto;
@@ -11,6 +12,8 @@ main{
 	min-width: 300px;
 }
 
+
+/*Make the textBox at the top fit properly within the calculator*/
 #textBox{
 	width:96.5%;
 	font-size: 3em;
@@ -21,6 +24,8 @@ main{
 }
 
 
+/*Button styles- making sure they fit properly in their row and column layout
+and giving them some styling */
 button{
 	width: 23.5%;
 	height: 70px;
