@@ -8,6 +8,7 @@ main{
 	border: 5px solid black;
 	padding: 9px 3px 7px 5px;
 	background: darkgray;
+	min-width: 300px;
 }
 
 #textBox{
@@ -30,7 +31,10 @@ button{
 	color: white;
 	margin: 0.2%;
 	padding: 1px;
-	
+}
+
+#clearButton, #equals{
+	width: 48.7%;
 }
 
 button:active{
@@ -39,4 +43,14 @@ button:active{
 
 button:hover{
 	border: 3px solid red;
+}
+
+/*Media query that makes the calculator position absolutely in the top left as the screen starts 
+to shrink, allowing it to remain the same size while displaying properly on smaller screens*/
+@media screen and (max-width: 700px){
+	main{
+		position: absolute;
+		left: 10px;
+		top: 10px;
+	}
 }
